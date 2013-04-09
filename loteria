@@ -1,0 +1,53 @@
+//tatiana.cv@hotmail.com
+//arreglos.cpp
+
+#include <iostream> 
+
+using namespace std; 
+
+int SIZE=5;  	//size del arreglo
+
+//esta funcion genera un numero random para la loteria
+void generador(int lottery[],int SIZE){
+	
+	srand(time(NULL));	
+	for(int i=0; i<SIZE; i++){
+	lottery[i]=rand()%49+1;
+	}
+}
+
+// esta funcion hace que el usuario ponga el numero que quiera utilizar para la loteria
+
+void userInput(int user[], int SIZE){
+	for(int i=0; i<SIZE; i++){
+	cout<<"Dime sus cinco numeros (1-49) para la loteria"<<endl; 
+	cin>>user[i];
+	}
+}
+
+// esta funcion cuenta cuantos numeros tuvieron en comun el num. random y el numero del usuario
+
+int winner(int user[], int lottery[], int SIZE){
+	
+	int conta=0;
+	for(int i=0; i<SIZE; i++){
+		if(lottery[i]==user[i])
+			conta++;
+	}
+	return conta; 
+}
+
+int main(){
+
+int lottery[SIZE];	//arreglo de loteria
+int user[SIZE];		//arreglo del usuario
+int conta;		//contador de numeros en comunes
+
+generador(lottery,SIZE);
+userInput(user,SIZE); 
+conta=winner(user,lottery,SIZE);
+
+cout<<"Usted pego "<<conta<<" numeros en la loteria"<<endl; 
+
+return 0; 
+}
